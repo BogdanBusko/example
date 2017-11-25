@@ -1,0 +1,27 @@
+%h1
+  Posts
+- @posts.each do |post|
+  %p
+    Title: 
+    = post.name
+    %br
+    Likes:
+    = post.like
+    .comments
+      Comments
+      - post.comments.each do |comment|
+        %p 
+          Comment: 
+          = comment.comment
+      = form_for :comment, url: comment_path(post.id) do |f|
+        Comment
+        = f.text_field :comment
+        = f.submit
+
+= form_for :post, url: main_path do |f|
+  Name
+  = f.text_field :name
+  %br
+  Like
+  = f.text_field :like
+  = f.submit
